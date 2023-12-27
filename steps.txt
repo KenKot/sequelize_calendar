@@ -1,0 +1,61 @@
+INIT: 
+    npm init -y
+    npm i express express-handlebars body-parser morgan sequelize pg pg-hstore nodemon
+    echo node/modules > .gitignore
+    createdb event_calendar_development
+    createdb event_calendar_test
+
+    change config.json
+        -change dialect, username/password, database name
+
+    Create models/migrations
+        Example: sequelize model:create --name User --attributes "fname:string lname:string username:string email:string"
+    Add defaultValue: Sequelize.fn('NOW') to createdAt and updatedAt fields in migrations files
+    Create seeds
+        Example: sequelize seed:create --name users
+        in seeds file:
+            const models = require("../models");
+            return queryInterface.bulkDelete('Users', null, {}, models.User);
+            return queryInterface.bulkInsert("Users", users);
+
+    Run migrations and seeds with $ npm run seed
+
+
+    package.json updates
+        "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1",
+            "start": "nodemon app.js",
+            "sql": "node_modules/.bin/sequelize",
+            "console": "node repl.js",
+            "seed": "sequelize db:migrate:undo:all && sequelize db:migrate && sequelize db:seed:all"
+        },
+
+        update "main": "app.js"
+
+    create app.js
+
+    create "views" folder
+        view/layouts/application.handlebars
+        view/shared/_nav.handlebars
+        view/users/index.handlebars
+
+    create "routes"
+        // ----------------------------------------
+        // Routes
+        // ----------------------------------------
+        var usersRoutes = require('./routers/users');
+        app.use('/', usersRoutes);
+
+    INSIDE /routers/users
+        const express = require("express");
+        const router = express.Router();
+        const models = require('./../models');
+        const User = models.User;
+        const sequelize = models.sequelize;
+
+        router.get("/", (req, res) => {
+        //res.send("router worky");
+        res.render('users/index', {})
+        });
+
+        module.exports = router;
