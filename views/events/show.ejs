@@ -1,0 +1,16 @@
+<header class="page-header">
+    <h1>Event: <%= event.name %></h1>
+    <a href="/events/<%= event.id %>/edit" class="btn btn-primary">Edit</a>
+    <a href="/events/<%= event.id %>/delete" class="btn btn-danger">Delete</a>
+  </header>
+
+  <p><%= event.description %></p>
+  <hr>
+  <p>Event Name: <%= event.name %></p>
+  <p>Date: <%= event.date %></p>
+  <p>Start Time: <%= event.startTime %></p>
+  <p>End Time: <%= event.endTime %></p>
+  <p>Calendar Name: <%= event.Calendar.name %></p>
+  <p>Username: <%= event.Calendar.User.username %></p>
+  <p>Email: <%= event.Calendar.User.email %></p>
+  

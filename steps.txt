@@ -1,6 +1,6 @@
 INIT: 
     npm init -y
-    npm i express express-handlebars body-parser morgan sequelize pg pg-hstore nodemon
+    npm i express express-handlebars body-parser morgan sequelize pg pg-hstore nodemon method-override
     echo node/modules > .gitignore
     createdb event_calendar_development
     createdb event_calendar_test
