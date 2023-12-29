@@ -1,0 +1,33 @@
+<header class="page-header">
+    <h1>New Event</h1>
+  </header>
+  
+  <form method="post" >
+    <h2>Invitation Info</h2>
+
+    <div class="form-group">
+      <label for="event_id">Event</label>
+      <select class="form-control" name="eventId" id="event_id">
+        <% events.forEach(function(event) { %>
+            <option value="<%= event.id %>"><%= event.name %></option>
+          <% }); %>
+          
+      </select>
+    </div>
+
+
+    <div class="form-group">
+        <label for="user_id">User</label>
+        <select class="form-control" name="userId" id="user_id">
+          <% users.forEach(function(user) { %>
+              <option value="<%= user.id %>"><%= user.username %></option>
+            <% }); %>
+            
+        </select>
+      </div>
+  
+    <div class="form-group">
+      <input type="submit" class="btn btn-primary" value="Create Invitation">
+    </div>
+  </form>
+  

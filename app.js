@@ -60,6 +60,9 @@ app.use("/calendars", calendarRoutes);
 const eventRoutes = require("./routers/events");
 app.use("/events", eventRoutes);
 
+const invitationRoutes = require("./routers/invitations");
+app.use("/invitations", invitationRoutes);
+
 app.listen(port, function () {
   console.log(`Example app listening on port ${port}!`);
 });
